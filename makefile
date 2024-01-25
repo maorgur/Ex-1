@@ -14,9 +14,15 @@ HEADER=NumClass.h
 CODE_ALL= advancedClassificationRecursion.c basicClassifcation.c main.c NumClass.h
 
 
-all: libclassloops.a libclassrec.a libclassloops.so libclassrec.so mains maindloop maindrec
+all: loops recursives loopd recursived mains maindloop maindrec
 
 
+
+#this is so the specified names will work
+loops: libclassloops.a
+recursives: libclassrec.a
+loopd: libclassloops.so
+recursived: libclassrec.so
 #create libs
 libclassloops.a: $(OBJECT_LOOP) #make loops
 	$(AR) -rcs $@ $(OBJECT_LOOP)
