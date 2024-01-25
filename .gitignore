@@ -1,0 +1,10 @@
+/.vscode
+/advancedClassificationLoop.o
+/advancedClassificationRecursion.o
+/basicClassifcation.o
+/libclassloops.so
+/libclassrec.so
+/main.o
+/maindloop
+/maindrec
+/test.py
