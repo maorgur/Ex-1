@@ -48,8 +48,16 @@ int isPalindrome(int num){
     middle = middle / 10;
     if (first_num != last_num) {
         return FALSE;
-    } else if (middle < 10 && middle > 0 && digitsCount == 4){
-        return FALSE; //edge case when the middle is 01 - 09 (not 1-9), like 1051
+    } else if (digitsCount - RecLenOfNum(middle) > 2){
+        //there are leading zeros, some checks to see it's fine:
+        int leading_zeroes = digitsCount - RecLenOfNum(middle) - 2;
+        //check if there are the same amount of trailing zeroes
+        if (((middle / (RecPower(10, leading_zeroes))) * RecPower(10, leading_zeroes)) == middle){ //number is the same even after rounding it
+            //check the palindrome without the zeroes in both sides
+            return isPalindrome(middle / (RecPower(10, leading_zeroes)));
+        } else {
+            return FALSE; //there are zeroes at the start, but not at the end
+        }
     } else {
         return isPalindrome(middle);
     }
