@@ -14,7 +14,7 @@ HEADER=NumClass.h
 CODE_ALL= advancedClassificationRecursion.c basicClassifcation.c main.c NumClass.h
 
 
-make all: libclassloops.a libclassrec.a libclassloops.so libclassrec.so mains maindloop maindrec
+all: libclassloops.a libclassrec.a libclassloops.so libclassrec.so mains maindloop maindrec
 
 
 #create libs
@@ -55,5 +55,5 @@ maindloop: $(OBJECT_MAIN) libclassloops.so #make maindloop
 maindrec: $(OBJECT_MAIN) libclassrec.so #make maindrec
 	$(CC) $(FLAGS) $(OBJECT_MAIN) -o $@ -I. -L. -lclassrec
 
- make clean:
+make clean:
 	rm *.o *.a *.so mains maindloop maindrec mains
