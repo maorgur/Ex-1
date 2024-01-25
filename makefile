@@ -10,11 +10,9 @@ OBJECT_ALL= advancedClassificationRecursion.o basicClassifcation.o main.o
 CODE_MAIN=main.c
 CODE_LOOP=advancedClassificationLoop.c basicClassifcation.c
 CODE_RECURSIVE=advancedClassificationRecursion.c basicClassifcation.c
-HEADER=NumClass.h
-CODE_ALL= advancedClassificationRecursion.c basicClassifcation.c main.c NumClass.h
 
 
-all: loops recursives loopd recursived mains maindloop maindrec
+all: $(OBJECT_ALL) loops recursives loopd recursived mains maindloop maindrec
 
 
 
@@ -23,6 +21,7 @@ loops: libclassloops.a
 recursives: libclassrec.a
 loopd: libclassloops.so
 recursived: libclassrec.so
+
 #create libs
 libclassloops.a: $(OBJECT_LOOP) #make loops
 	$(AR) -rcs $@ $(OBJECT_LOOP)
@@ -36,7 +35,7 @@ libclassloops.so: $(OBJECT_LOOP) #make loopd
 libclassrec.so: $(OBJECT_RECURSIVE) #make recursived
 	$(CC) $(FLAGS) -shared -o $@ $(OBJECT_RECURSIVE)
 
-# compile the code
+# compile the code to object files
 advancedClassificationLoop.o: $(CODE_LOOP)
 	$(CC) $(FLAGS) -fPIC -c $^
 
@@ -61,5 +60,5 @@ maindloop: $(OBJECT_MAIN) libclassloops.so #make maindloop
 maindrec: $(OBJECT_MAIN) libclassrec.so #make maindrec
 	$(CC) $(FLAGS) $(OBJECT_MAIN) -o $@ -I. -L. -lclassrec
 
-make clean:
-	rm *.o *.a *.so mains maindloop maindrec mains
+clean:
+	rm *.o *.a *.so mains maindloop maindrec
