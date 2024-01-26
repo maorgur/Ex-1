@@ -30,20 +30,20 @@ libclassrec.a: $(OBJECT_RECURSIVE) #make recursives
 	$(AR) -rcs $@ $(OBJECT_RECURSIVE)
 
 libclassloops.so: $(OBJECT_LOOP) #make loopd
-	$(CC) $(FLAGS) -shared -o $@ $(OBJECT_LOOP)
+	$(CC) $(FLAGS) -shared -fPIC -o $@ $(OBJECT_LOOP)
 
 libclassrec.so: $(OBJECT_RECURSIVE) #make recursived
-	$(CC) $(FLAGS) -shared -o $@ $(OBJECT_RECURSIVE)
+	$(CC) $(FLAGS) -shared -fPIC -o $@ $(OBJECT_RECURSIVE)
 
 # compile the code to object files
 advancedClassificationLoop.o: $(CODE_LOOP)
-	$(CC) $(FLAGS) -fPIC -c $^
+	$(CC) $(FLAGS) -c $^
 
 advancedClassificationRecursion.o: $(CODE_RECURSIVE)
-	$(CC) $(FLAGS) -fPIC -c $^
+	$(CC) $(FLAGS) -c $^
 
 basicClassifcation.o: basicClassifcation.c
-	$(CC) $(FLAGS) -fPIC -c $^
+	$(CC) $(FLAGS) -c $^
 
 $(OBJECT_MAIN): $(CODE_MAIN)
 	$(CC) $(FLAGS) -c $(CODE_MAIN)
